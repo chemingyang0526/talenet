@@ -13,6 +13,8 @@ The seeder codes can be found in these files: src/AppBundle/DataFixtures/Categor
 
 This project uses the lexikJWTAuthenticationBundle, and requires private and public SSH keys in the /var/jwt directory, please follow the instruction on lexikJWTAuthenticationBundle's github.com page.
 
+The REST Api for Product and Category can be found in this directory: src/AppBundle/Controller/Api
+
 Please also note that this project uses PHPUnit for Unit Testing of the REST API. Please install PHPUnit.  You may follow the instruction on https://phpunit.de
 
 The Unit Test codes can be found in these files: src/AppBundle/Tests/Controller/Api/CategoryControllerTest.php and src/AppBundle/Tests/Controller/Api/ProductControllerTest.php
