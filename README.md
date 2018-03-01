@@ -3,7 +3,7 @@ talenet
 
 A Symfony project created on February 23, 2018, 8:08 pm.
 
-After cloning this project from Git, please create a database first, and fill in the DB settings in parameters.yml.
+After cloning this project from Git, please run composer update, create a database, and fill in the DB settings in parameters.yml.
 
 To create the tables in the DB, please run php bin/console doctrine:schema:update --force at the project's root directory.
 
