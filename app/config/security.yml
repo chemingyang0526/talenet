@@ -52,7 +52,7 @@ security:
                 default_target_path: admin
             logout:
                 path: logout
-                target: login
+                target: /
 
     access_control:
         - { path: ^/api/login,   roles: IS_AUTHENTICATED_ANONYMOUSLY }

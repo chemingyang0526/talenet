@@ -23,21 +23,9 @@ class CategoryControllerTest extends WebTestCase
 
         $em = $container->get('doctrine.orm.entity_manager');
 
-        $highest_id = $em->createQueryBuilder()
-        ->select('MAX(e.id)')
-        ->from('AppBundle:Category', 'e')
-        ->getQuery()
-        ->getSingleScalarResult();
-
         $lowest_id = $em->createQueryBuilder()
         ->select('MIN(e.id)')
         ->from('AppBundle:Category', 'e')
-        ->getQuery()
-        ->getSingleScalarResult();
-
-        $highest_prod = $em->createQueryBuilder()
-        ->select('MAX(e.id)')
-        ->from('AppBundle:Product', 'e')
         ->getQuery()
         ->getSingleScalarResult();
 
@@ -46,7 +34,7 @@ class CategoryControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /api/category");
 
         // fetch one category
-        $crawler = $client->request('GET', '/unsecure/category/'.$highest_id,[],[], $header,'');
+        $crawler = $client->request('GET', '/unsecure/category/'.$lowest_id,[],[], $header,'');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET api/category/{id}");
 
         $header = [
@@ -70,6 +58,12 @@ class CategoryControllerTest extends WebTestCase
 
         $crawler = $client->request('PUT', '/api/category/'.$data["id"].'/edit',[],[], $header, json_encode($data));
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for PUT /api/category/{id}/edit");
+
+        $highest_id = $em->createQueryBuilder()
+        ->select('MAX(e.id)')
+        ->from('AppBundle:Category', 'e')
+        ->getQuery()
+        ->getSingleScalarResult();
 
         $data = [
             'id' => $highest_id
